@@ -9,7 +9,7 @@ def solution(n):
         # find variation set
         def find_variation_set(list_char):
             variation = []  # unfortunately mutable
-            [[variation.append(list_char[0:i])] for i in range(1, len(list_char) + 1)]  # fucking 2.7 scan imitation
+            [[variation.append(list_char[0:i])] for i in range(1, len(list_char) + 1)]  # 2.7 scan imitation
             return list(map(lambda elem: reduce(lambda a, b: a + b, elem), variation))
 
         # check entrance for each divisor (find divisors encapsulated in filter)
