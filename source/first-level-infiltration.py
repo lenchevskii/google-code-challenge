@@ -16,7 +16,7 @@ def solution(n):
         def max_entrance():
             return len(max(map(lambda x: x[:-1],
                                filter(lambda elem: all(item == '' for item in elem),
-                                      [n.split(i) for i in find_variation_set(list(n))]))))
+                                      [n.split(i) for i in find_variation_set(n)]))))
 
         return max_entrance() if max_entrance() != 1 else 0
     else:
@@ -24,7 +24,7 @@ def solution(n):
 
 
 # change print to print() for using in python 3
-print solution('abcabcabcabc')
+print (solution('abcabcabcabc'))
 
 
 # experimental functions:
