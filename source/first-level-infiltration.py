@@ -1,30 +1,22 @@
 # python 2.7 needed by condition of the problem
 import re
-from functools import reduce
 
 
 def solution(n):
     if len(n) < 200 and re.findall(r"[\W|\d|_|A-Z]", n) == []:
 
-        # find variation set
-        def find_variation_set(list_char):
-            variation = []  # unfortunately mutable
-            [[variation.append(list_char[0:i])] for i in range(1, len(list_char) + 1)]  # 2.7 scan imitation
-            return list(map(lambda elem: reduce(lambda a, b: a + b, elem), variation))
+        variation_set = (n[0:i] for i in range(1, len(n) + 1))
 
-        # check entrance for each divisor (find divisors encapsulated in filter)
-        def max_entrance():
-            return len(max(map(lambda x: x[:-1],
-                               filter(lambda elem: all(item == '' for item in elem),
-                                      [n.split(i) for i in find_variation_set(n)]))))
+        # entrance for each divisor
+        max_entrance = len(max((n.split(i)[:-1] for i in variation_set if n.split(i))))
 
-        return max_entrance() if max_entrance() != 1 else 0
+        return max_entrance if max_entrance != 1 else 0
     else:
         return "Commander Lambda doesn't like this! Check your cake"
 
 
 # change print to print() for using in python 3
-print (solution('abcabcabcabc'))
+print solution('abcabcabcabc')
 
 
 # experimental functions:
